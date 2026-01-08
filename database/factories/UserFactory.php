@@ -27,7 +27,7 @@ class UserFactory extends Factory
 
         $firstNames = $faker->firstName();
         $lastNames = $faker->lastName();
-        $randomnumber= rnd(10,99);
+        $randomnumber= rand(10,99);
 
         return [
             'name' => $firstNames . ' ' . $lastNames ,

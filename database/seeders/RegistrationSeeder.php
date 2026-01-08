@@ -21,26 +21,26 @@ class RegistrationSeeder extends Seeder
             [
                 'user_id' => $users[1]->id,
                 'event_id' => $events[0]->id,
-                'status' => 'elfogadva',
-                'registered_at' => now()->subDays(5),
-            ],
-            [
-                'user_id' => $users[1]->id,
-                'event_id' => $events[0]->id,
-                'status' => 'függőben',
-                'registered_at' => now()->subDays(3),
+                'status' => 'Elfogadva',
+                'registration_date' => now()->subDays(5),
             ],
             [
                 'user_id' => $users[2]->id,
-                'event_id' => $events[1]->id,
-                'status' => 'elfogadva',
-                'registered_at' => now()->subDays(7),
+                'event_id' => $events[0]->id,
+                'status' => 'Függőben',
+                'registration_date' => now()->subDays(3),
+            ],
+            [
+                'user_id' => $users[2]->id,
+                'event_id' => $events[1]->id, 
+                'status' => 'Elfogadva',
+                'registration_date' => now()->subDays(7),
             ],
             [
                 'user_id' => $users[3]->id,
                 'event_id' => $events[2]->id,
-                'status' => 'elutasítva',
-                'registered_at' => now()->subDays(10),
+                'status' => 'Elutasítva',
+                'registration_date' => now()->subDays(10),
             ],
         ];
 
@@ -61,8 +61,8 @@ class RegistrationSeeder extends Seeder
                     Registration::create([
                         'user_id' => $user->id,
                         'event_id' => $event->id,
-                        'status' => collect(['függőben', 'elfogadva', 'elutasítva'])->random(),
-                        'registered_at' => now()->subDays(rand(0, 15)),
+                        'status' => collect(['Függőben', 'Elfogadva', 'Elutasítva'])->random(),
+                        'registration_date' => now()->subDays(rand(0, 15)),
                     ]);
                 }
             }

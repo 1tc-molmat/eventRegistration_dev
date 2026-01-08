@@ -15,7 +15,7 @@ class EventSeeder extends Seeder
         // Fix dátumú példa események
         $events = [
             [
-                'title' => 'Tech Conference 2024',
+                'title' => 'Tech Conference 2026',
                 'description' => 'Éves technológiai konferencia innovatív témákkal.',
                 'date' => now()->addDays(30),
                 'location' => 'Budapest, BME Q épület',
