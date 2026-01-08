@@ -10,8 +10,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
+    use HasFactory, Notifiable, SoftDeletes, HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'is_admin',
     ];
 
     /**
@@ -43,6 +44,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            
         ];
+    }
+
+    public function registrations(){
+        return $this->hasMany(Registration::class);
+    }
+
+    public function events(){
+        return $this->belongsToMany(Event::class, 'registrations')
+                    ->withPivot('registration_date', 'status')
+                    ->withTimestamps();
     }
 }
