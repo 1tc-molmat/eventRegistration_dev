@@ -23,11 +23,18 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = \Faker\Factory::create('hu_HU');
+
+        $firstNames = $faker->firstName();
+        $lastNames = $faker->lastName();
+        $randomnumber= rnd(10,99);
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $firstNames . ' ' . $lastNames ,
+            'email' => strtolower(Str::ascii($firstNames).'.' .Str::ascii( $lastNames)) . $randomnumber . '@events.com',
+            'phone' => $faker->numerify('+36 ## ### ####'),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('jelszo123'), 
             'remember_token' => Str::random(10),
         ];
     }
